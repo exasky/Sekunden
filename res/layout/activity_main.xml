@@ -8,9 +8,39 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".MainActivity" >
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/hello_world" />
-
+    <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageView"
+            android:src="@drawable/logo_sekunden" android:layout_alignParentTop="true"
+            android:contentDescription="logo" android:layout_alignParentRight="true"/>
+    <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="start game"
+            android:id="@+id/buttonStartGame" android:layout_below="@+id/imageView" android:layout_centerHorizontal="true"
+            android:layout_alignParentLeft="true" android:layout_alignParentRight="true" android:height="50dp"
+            />
+    <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="show scores"
+            android:id="@+id/buttonShowScores" android:layout_below="@+id/buttonStartGame" android:layout_centerHorizontal="true"
+            android:layout_marginTop="49dp" android:layout_alignParentLeft="true"
+            android:layout_alignParentRight="true" android:height="50dp"/>
+    <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="exit"
+            android:id="@+id/buttonExit"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true" android:enabled="true" android:width="90dp" android:height="50dp"
+            android:onClick="selfDestruct"/>
+    <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Credits"
+            android:id="@+id/buttonCredits"
+            android:layout_alignParentBottom="true" android:layout_alignParentLeft="true" android:enabled="true"
+            android:width="90dp" android:height="50dp"/>
 </RelativeLayout>
