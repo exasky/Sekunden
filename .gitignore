@@ -8,3 +8,5 @@ Sekunden.iml
 *.prefs
 
 *.class
+
+bin/*
