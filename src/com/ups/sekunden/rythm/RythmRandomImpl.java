@@ -58,6 +58,11 @@ public class RythmRandomImpl implements IRythm, Runnable {
 	public void run() {
 		while (true) {
 			produceDisk();
+			try {
+				wait(500);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 }
