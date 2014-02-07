@@ -1,2 +1,10 @@
 .idea/
 Sekunden.iml
+
+.classpath
+
+.project
+
+*.prefs
+
+*.class
