@@ -1,19 +1,19 @@
 package com.ups.sekunden;
 
-import android.os.Bundle;
 import android.app.Activity;
+import android.content.Intent;
+import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
-import android.widget.Button;
 
 public class MainActivity extends Activity {
 
-    public Button exit;
+    public String classTag = "MainActivity";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-        exit = (Button)findViewById(R.id.buttonExit);
 		setContentView(R.layout.activity_main);
 	}
 
@@ -30,5 +30,15 @@ public class MainActivity extends Activity {
      */
     public void selfDestruct(View view){
         finish();
+    }
+
+    /**
+     * method call when start game is pressed.
+     * To launch the game
+     */
+    public void startGame(View view){
+        Intent intent = new Intent(this, GameActivity.class);
+        Log.d(classTag, "in star game");
+        startActivity(intent);
     }
 }

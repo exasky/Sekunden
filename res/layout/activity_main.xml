@@ -20,6 +20,7 @@
             android:text="start game"
             android:id="@+id/buttonStartGame" android:layout_below="@+id/imageView" android:layout_centerHorizontal="true"
             android:layout_alignParentLeft="true" android:layout_alignParentRight="true" android:height="50dp"
+            android:onClick="startGame"
             />
     <Button
             android:layout_width="wrap_content"
