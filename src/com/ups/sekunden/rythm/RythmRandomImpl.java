@@ -1,6 +1,7 @@
 package com.ups.sekunden.rythm;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 
@@ -39,9 +40,11 @@ public class RythmRandomImpl implements IRythm, Runnable {
 
 	@Override
 	public void unRegisterListener(IRythmListener listener) {
-		for (int i = 0; i < this.listenerList.size(); i++) {
-			if (this.listenerList.get(i) == listener) {
-				this.listenerList.remove(i);
+		Iterator<IRythmListener> it = this.listenerList.iterator();
+		while (it.hasNext()) {
+			IRythmListener listenerIt = it.next();
+			if (listenerIt == listener) {
+				it.remove();
 				break;
 			}
 		}
