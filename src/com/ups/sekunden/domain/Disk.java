@@ -6,6 +6,13 @@ public class Disk {
 	private int radius;
 	private int msTime;
 	
+	public Disk(int x, int y, int radius, int time) {
+		this.xCenter = x;
+		this.yCenter = y;
+		this.radius = radius;
+		this.msTime = time;
+	}
+	
 	public int getxCenter() {
 		return xCenter;
 	}
