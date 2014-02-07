@@ -13,18 +13,24 @@ import com.ups.sekunden.domain.Disk;
  *
  */
 public class GraphicalDisk extends Disk {
+	public static final int RADIUS_INIT = 50;
+	public static final int RADIUS_MIN = 25;
+	
+	private int initialRadius;
 	private int currentRadius;	//The current radius, it can change with the time
 	private int color;
 	
 	
-	public GraphicalDisk(int x, int y, int radius, int time) {
-		super(x, y, radius, time);
-		this.currentRadius = radius;
-		this.color = Color.WHITE;
+	public GraphicalDisk(int x, int y, int time) {
+		super(x, y, time);
+		this.initialRadius = RADIUS_INIT;
+		this.currentRadius = RADIUS_INIT;
+
+		this.changeColor(time);
 	}
 	
 	public GraphicalDisk(Disk disk) {
-		this(disk.getxCenter(), disk.getyCenter(), disk.getRadius(), disk.getMsTime());
+		this(disk.getxCenter(), disk.getyCenter(), disk.getMsTime());
 	}
 	
 	public int getCurrentRadius() {
@@ -36,7 +42,7 @@ public class GraphicalDisk extends Disk {
 	}
 	
 	public int getInitialRadius() {
-		return this.getRadius();
+		return this.initialRadius;
 	}
 	
 	public int getColor() {
@@ -45,5 +51,17 @@ public class GraphicalDisk extends Disk {
 	
 	public void setColor(int color) {
 		this.color = color;
+	}
+	
+	private void changeColor(int time) {
+		if(time <= 300) {
+			this.color = Color.RED;
+		}
+		else if(time <= 500) {
+			this.color = Color.MAGENTA;
+		}
+		else {
+			this.color = Color.BLUE;
+		}
 	}
 }

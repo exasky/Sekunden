@@ -15,7 +15,6 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.os.Handler;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.widget.ImageView;
 
 /**
@@ -23,15 +22,13 @@ import android.widget.ImageView;
  *
  */
 public class DiskImageView extends ImageView {
-	private static int TIME_REFRESH = 100;
+	private static int TIME_REFRESH = 50;
 	private Handler handler;
 	private Runnable runnable;
 	private List<GraphicalDisk> disks;
-	private int speed = 10;
 	
 	public DiskImageView(Context context, AttributeSet attrs) {
 		super(context,attrs);
-		Log.d("test", "consr");
 		this.disks = new ArrayList<GraphicalDisk>();
 		this.handler = new Handler();
 		this.runnable = new Runnable() {
@@ -51,7 +48,7 @@ public class DiskImageView extends ImageView {
 		super.onDraw(canvas);
 		this.drawCircles(canvas);
 		
-		handler.postDelayed(runnable, 500);
+		handler.postDelayed(runnable, TIME_REFRESH);
 	}
 	
 	private void drawCircles(Canvas canvas) {
@@ -61,17 +58,15 @@ public class DiskImageView extends ImageView {
 		int radius;
 		
 		Iterator<GraphicalDisk> it = this.disks.iterator();
-		Log.d("test", "appel");
 		while(it.hasNext()) {
-			Log.d("test", "boucle");
 			GraphicalDisk disk = it.next();
 			paint.setColor(disk.getColor());
 			radius = disk.getCurrentRadius();
 			canvas.drawCircle(disk.getxCenter(), disk.getyCenter(), radius, paint);
-			disk.setCurrentRadius(radius - 1);
+			disk.setCurrentRadius(radius - (TIME_REFRESH * disk.getInitialRadius() / disk.getMsTime()));
 			
 			//remove old disk (to not be display anymore)
-			if(radius <= 0) {
+			if(radius <= GraphicalDisk.RADIUS_MIN) {
 				it.remove();
 			}
 		}

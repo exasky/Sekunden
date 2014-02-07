@@ -23,12 +23,7 @@ public class RythmRandomImpl implements IRythm, Runnable {
 	public void produceDisk() {
 
 		Random rand = new Random();
-		Disk disk = new Disk();
-
-		disk.setxCenter(rand.nextInt(this.widthScreen));
-		disk.setyCenter(rand.nextInt(this.heightScreen));
-		disk.setRadius(rand.nextInt(10));
-		disk.setMsTime(500);
+		Disk disk = new Disk(rand.nextInt(this.widthScreen), rand.nextInt(this.heightScreen), 500);
 
 		notifyListeners(disk);
 	}
