@@ -53,17 +53,28 @@ public class DiskImageView extends ImageView {
 	
 	private void drawCircles(Canvas canvas) {
 		Paint paint = new Paint();
-		paint.setStyle(Paint.Style.FILL);
-		
 		int radius;
-		
+		int newRadius;
 		Iterator<GraphicalDisk> it = this.disks.iterator();
 		while(it.hasNext()) {
 			GraphicalDisk disk = it.next();
+			
+			//draw colored circle
+			paint.setStyle(Paint.Style.FILL);
 			paint.setColor(disk.getColor());
 			radius = disk.getCurrentRadius();
 			canvas.drawCircle(disk.getxCenter(), disk.getyCenter(), radius, paint);
-			disk.setCurrentRadius(radius - (TIME_REFRESH * disk.getInitialRadius() / disk.getMsTime()));
+			newRadius = radius - (TIME_REFRESH * disk.getInitialRadius() / disk.getMsTime());
+			if(newRadius < GraphicalDisk.RADIUS_MIN) {
+				newRadius = GraphicalDisk.RADIUS_MIN;
+			}
+			disk.setCurrentRadius(newRadius);
+			
+			
+			//draw border
+			paint.setStyle(Paint.Style.STROKE);
+			paint.setColor(Color.BLACK);
+			canvas.drawCircle(disk.getxCenter(), disk.getyCenter(), GraphicalDisk.RADIUS_MIN, paint);
 			
 			//remove old disk (to not be display anymore)
 			if(radius <= GraphicalDisk.RADIUS_MIN) {
