@@ -1,5 +1,7 @@
 .idea/
+
 Sekunden.iml
+
 gen/*
 
 .classpath

@@ -1,10 +1,10 @@
 package com.ups.sekunden.rythm;
 
+import com.ups.sekunden.domain.Disk;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-
-import com.ups.sekunden.domain.Disk;
 
 public class RythmImpl implements IRythm {
 
@@ -48,4 +48,8 @@ public class RythmImpl implements IRythm {
 		}
 	}
 
+    @Override
+    public void run() {
+
+    }
 }

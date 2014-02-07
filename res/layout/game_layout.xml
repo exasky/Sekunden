@@ -1,14 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:orientation="vertical"
               android:layout_width="fill_parent"
               android:layout_height="fill_parent">
 
-    <TextView
+    <view
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Start Game"
-            android:id="@+id/textView"/>
-</LinearLayout>
+            class="com.ups.sekunden.graphic.DiskImageView"
+            android:id="@+id/viewDisk"
+            android:layout_gravity="center_horizontal"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"/>
+</RelativeLayout>

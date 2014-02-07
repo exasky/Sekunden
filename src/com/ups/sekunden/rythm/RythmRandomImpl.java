@@ -1,22 +1,22 @@
 package com.ups.sekunden.rythm;
 
+import com.ups.sekunden.domain.Disk;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 
-import com.ups.sekunden.domain.Disk;
+public class RythmRandomImpl implements IRythm {
+    public String classTag = "RythmeRandomImpl";
 
-public class RythmRandomImpl implements IRythm, Runnable {
-
-	private List<IRythmListener> listenerList;
+	private List<IRythmListener> listenerList = new ArrayList<IRythmListener>();
 	private int heightScreen;
 	private int widthScreen;
 
 	public RythmRandomImpl(int height, int width) {
 		this.heightScreen = height;
 		this.widthScreen = width;
-		this.listenerList = new ArrayList<IRythmListener>();
 	}
 
 	@Override
@@ -24,8 +24,7 @@ public class RythmRandomImpl implements IRythm, Runnable {
 
 		Random rand = new Random();
 		Disk disk = new Disk(rand.nextInt(this.widthScreen), rand.nextInt(this.heightScreen), 500);
-
-		notifyListeners(disk);
+        notifyListeners(disk);
 	}
 
 	@Override
@@ -57,7 +56,7 @@ public class RythmRandomImpl implements IRythm, Runnable {
 		while (true) {
 			produceDisk();
 			try {
-				wait(500);
+				Thread.sleep(200);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}

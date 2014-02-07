@@ -29,6 +29,7 @@ public class MainActivity extends Activity {
      * To exit the app
      */
     public void selfDestruct(View view){
+        Log.i(classTag, "exit app");
         finish();
     }
 
@@ -38,7 +39,7 @@ public class MainActivity extends Activity {
      */
     public void startGame(View view){
         Intent intent = new Intent(this, GameActivity.class);
-        Log.d(classTag, "in star game");
+        Log.i(classTag, "start game");
         startActivity(intent);
     }
 }

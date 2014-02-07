@@ -3,12 +3,6 @@
  */
 package com.ups.sekunden.graphic;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-
-import com.ups.sekunden.domain.Disk;
-
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -16,6 +10,11 @@ import android.graphics.Paint;
 import android.os.Handler;
 import android.util.AttributeSet;
 import android.widget.ImageView;
+import com.ups.sekunden.domain.Disk;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 /**
  * @author SERIN Kevin
@@ -25,11 +24,10 @@ public class DiskImageView extends ImageView {
 	private static int TIME_REFRESH = 50;
 	private Handler handler;
 	private Runnable runnable;
-	private List<GraphicalDisk> disks;
+	private List<GraphicalDisk> disks = new ArrayList<GraphicalDisk>();
 	
 	public DiskImageView(Context context, AttributeSet attrs) {
 		super(context,attrs);
-		this.disks = new ArrayList<GraphicalDisk>();
 		this.handler = new Handler();
 		this.runnable = new Runnable() {
 			@Override
