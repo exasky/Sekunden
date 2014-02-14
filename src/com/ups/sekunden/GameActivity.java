@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Display;
 import android.view.MotionEvent;
+import android.view.View;
 
 import com.ups.sekunden.domain.Disk;
 import com.ups.sekunden.graphic.DiskImageView;
@@ -15,6 +16,7 @@ import com.ups.sekunden.rythm.RythmRandomImpl;
 /**
  * Created by julien on 07/02/14.
  */
+
 public class GameActivity extends Activity implements IRythmListener {
 	public String classTag = "GameActivity";
 
@@ -63,5 +65,15 @@ public class GameActivity extends Activity implements IRythmListener {
 		diskImage.onTouch((int) event.getX() - xShift, (int) event.getY()
 				- yShift);
 		return super.onTouchEvent(event);
+	}
+
+	/**
+	 * user click on pause button
+	 */
+	public void doPause(View view) {
+		if (rythm.isPaused())
+			rythm.onResumed();
+		else
+			rythm.onPaused();
 	}
 }

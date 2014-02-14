@@ -14,11 +14,13 @@ public class RythmRandomImpl implements IRythm {
 	private int heightScreen;
 	private int widthScreen;
 	private boolean stop; // true when the runnable must be stopped
+	private boolean paused; // true when the runnable must be paused
 
 	public RythmRandomImpl(int height, int width) {
 		this.heightScreen = height;
 		this.widthScreen = width;
 		this.stop = false;
+		this.paused = false;
 	}
 
 	@Override
@@ -56,8 +58,11 @@ public class RythmRandomImpl implements IRythm {
 	@Override
 	public void run() {
 		while (!this.stop) {
-			produceDisk();
 			try {
+				while (this.paused) { // pause loop
+					Thread.sleep(500);
+				}
+				produceDisk();
 				Thread.sleep(700);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
@@ -68,5 +73,20 @@ public class RythmRandomImpl implements IRythm {
 	@Override
 	public void onStop() {
 		this.stop = true;
+	}
+
+	@Override
+	public void onPaused() {
+		this.paused = true;
+	}
+
+	@Override
+	public void onResumed() {
+		this.paused = false;
+	}
+
+	@Override
+	public boolean isPaused() {
+		return this.paused;
 	}
 }

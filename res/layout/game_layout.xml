@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:orientation="vertical"
               android:layout_width="fill_parent"
-              android:layout_height="fill_parent">
+              android:layout_height="fill_parent"
+              tools:context=".GameActivity">
 
     <view
             android:layout_width="wrap_content"
@@ -15,4 +17,17 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"/>
+
+    <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:text="II"
+            android:id="@+id/button"
+            android:onClick="doPause"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"/>
+
 </RelativeLayout>

@@ -57,4 +57,19 @@ public class RythmImpl implements IRythm {
 	public void onStop() {
 		// TODO Auto-generated method stub
 	}
+
+    @Override
+    public void onPaused() {
+
+    }
+
+    @Override
+    public boolean isPaused() {
+        return false;
+    }
+
+    @Override
+    public void onResumed() {
+
+    }
 }
