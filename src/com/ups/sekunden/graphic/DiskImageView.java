@@ -113,8 +113,9 @@ public class DiskImageView extends ImageView implements ITouchReceiver {
 		Paint paint = new Paint();
 		int radius;
 		Iterator<GraphicalDisk> it = this.disks.iterator();
-
+		int number = 1;
 		while (it.hasNext()) {
+
 			GraphicalDisk disk = it.next();
 
 			// draw colored circle
@@ -130,10 +131,17 @@ public class DiskImageView extends ImageView implements ITouchReceiver {
 			canvas.drawCircle(disk.getxCenter(), disk.getyCenter(),
 					GraphicalDisk.RADIUS_MIN, paint);
 
+			// draw number
+			paint.setTextSize(28);
+			canvas.drawText(number + "", disk.getxCenter() - 8,
+					disk.getyCenter() + 10, paint);
+
 			// remove old disk (to not be display anymore)
 			if (radius <= GraphicalDisk.RADIUS_MIN) {
 				disks.remove(disk);
 			}
+
+			number++;
 		}
 	}
 
