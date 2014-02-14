@@ -43,5 +43,5 @@
             android:text="Credits"
             android:id="@+id/buttonCredits"
             android:layout_alignParentBottom="true" android:layout_alignParentLeft="true" android:enabled="true"
-            android:width="90dp" android:height="50dp"/>
+            android:width="90dp" android:height="50dp" android:onClick="openCredit"/>
 </RelativeLayout>

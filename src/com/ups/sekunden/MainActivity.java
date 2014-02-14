@@ -1,6 +1,8 @@
 package com.ups.sekunden;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -27,6 +29,7 @@ public class MainActivity extends Activity {
     /**
      * method call when exit is pressed.
      * To exit the app
+     * @param view
      */
     public void selfDestruct(View view){
         Log.i(classTag, "exit app");
@@ -36,10 +39,32 @@ public class MainActivity extends Activity {
     /**
      * method call when start game is pressed.
      * To launch the game
+     * @param view
      */
     public void startGame(View view){
         Intent intent = new Intent(this, GameActivity.class);
         Log.i(classTag, "start game");
         startActivity(intent);
+    }
+
+    /**
+     * action when click on credit button
+     * @param view
+     */
+    public void openCredit(View view){
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+        alertDialogBuilder.setTitle("Crédits")
+                          .setMessage(R.string.credit)
+                          .setCancelable(false)
+                          .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog,int id) {
+                                    dialog.cancel();
+                                }
+        });
+        // create alert dialog
+        AlertDialog alertDialog = alertDialogBuilder.create();
+
+        // show it
+        alertDialog.show();
     }
 }
