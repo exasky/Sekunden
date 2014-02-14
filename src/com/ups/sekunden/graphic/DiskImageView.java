@@ -12,9 +12,9 @@ import android.util.AttributeSet;
 import android.widget.ImageView;
 import com.ups.sekunden.domain.Disk;
 
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
  * @author SERIN Kevin
@@ -24,10 +24,11 @@ public class DiskImageView extends ImageView {
 	private static int TIME_REFRESH = 50;
 	private Handler handler;
 	private Runnable runnable;
-	private List<GraphicalDisk> disks = new ArrayList<GraphicalDisk>();
+	private List<GraphicalDisk> disks;
 	
 	public DiskImageView(Context context, AttributeSet attrs) {
 		super(context,attrs);
+		this.disks = new CopyOnWriteArrayList<GraphicalDisk>();
 		this.handler = new Handler();
 		this.runnable = new Runnable() {
 			@Override
@@ -55,7 +56,7 @@ public class DiskImageView extends ImageView {
 		int newRadius;
 		Iterator<GraphicalDisk> it = this.disks.iterator();
 		while(it.hasNext()) {
-			GraphicalDisk disk = it.next();
+			GraphicalDisk disk = it.next();;
 			
 			//draw colored circle
 			paint.setStyle(Paint.Style.FILL);
@@ -76,7 +77,7 @@ public class DiskImageView extends ImageView {
 			
 			//remove old disk (to not be display anymore)
 			if(radius <= GraphicalDisk.RADIUS_MIN) {
-				it.remove();
+				disks.remove(disk);
 			}
 		}
 	}
