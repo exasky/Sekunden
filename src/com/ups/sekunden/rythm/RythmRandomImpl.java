@@ -1,33 +1,34 @@
 package com.ups.sekunden.rythm;
 
-import com.ups.sekunden.domain.Disk;
-
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 
+import com.ups.sekunden.domain.Disk;
+
 public class RythmRandomImpl implements IRythm {
-    public String classTag = "RythmeRandomImpl";
+	public String classTag = "RythmeRandomImpl";
 
 	private List<IRythmListener> listenerList = new ArrayList<IRythmListener>();
 	private int heightScreen;
 	private int widthScreen;
-    private boolean stop;	//true when the runnable must be stopped
-    private boolean paused;	//true when the runnable must be paused
+	private boolean stop; // true when the runnable must be stopped
+	private boolean paused; // true when the runnable must be paused
 
 	public RythmRandomImpl(int height, int width) {
 		this.heightScreen = height;
 		this.widthScreen = width;
 		this.stop = false;
-        this.paused = false;
+		this.paused = false;
 	}
 
 	@Override
 	public void produceDisk() {
 		Random rand = new Random();
-		Disk disk = new Disk(rand.nextInt(this.widthScreen), rand.nextInt(this.heightScreen), 500);
-        notifyListeners(disk);
+		Disk disk = new Disk(rand.nextInt(this.widthScreen),
+				rand.nextInt(this.heightScreen), 2000);
+		notifyListeners(disk);
 	}
 
 	@Override
@@ -58,11 +59,11 @@ public class RythmRandomImpl implements IRythm {
 	public void run() {
 		while (!this.stop) {
 			try {
-                while (this.paused){ //pause loop
-                    Thread.sleep(500);
-                }
-                produceDisk();
-                Thread.sleep(200);
+				while (this.paused) { // pause loop
+					Thread.sleep(500);
+				}
+				produceDisk();
+				Thread.sleep(700);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
@@ -74,18 +75,18 @@ public class RythmRandomImpl implements IRythm {
 		this.stop = true;
 	}
 
-    @Override
-    public void onPaused() {
-        this.paused = true;
-    }
+	@Override
+	public void onPaused() {
+		this.paused = true;
+	}
 
-    @Override
-    public void onResumed() {
-        this.paused = false;
-    }
+	@Override
+	public void onResumed() {
+		this.paused = false;
+	}
 
-    @Override
-    public boolean isPaused() {
-        return this.paused;
-    }
+	@Override
+	public boolean isPaused() {
+		return this.paused;
+	}
 }

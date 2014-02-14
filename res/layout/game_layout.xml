@@ -7,20 +7,6 @@
               android:layout_height="fill_parent"
               tools:context=".GameActivity">
 
-    <Button
-            style="?android:attr/buttonStyleSmall"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:text="II"
-            android:id="@+id/button"
-            android:onClick="doPause"
-            android:layout_below="@+id/viewDisk"
-            android:layout_toRightOf="@+id/viewDisk"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="20dp"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentLeft="true"/>
-
     <view
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -31,5 +17,17 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"/>
+
+    <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:text="II"
+            android:id="@+id/button"
+            android:onClick="doPause"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"/>
 
 </RelativeLayout>
