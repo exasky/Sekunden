@@ -52,4 +52,9 @@ public class RythmImpl implements IRythm {
     public void run() {
 
     }
+
+	@Override
+	public void onStop() {
+		// TODO Auto-generated method stub
+	}
 }

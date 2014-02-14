@@ -32,6 +32,12 @@ public class GameActivity extends Activity implements IRythmListener{
         rythmTh = new Thread(rythm);
         rythmTh.start();
     }
+    
+    @Override
+    protected void onDestroy() {
+    	super.onDestroy();
+    	rythm.onStop();
+    }
 
     @Override
     public void notifyGame(Disk disk) {

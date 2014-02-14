@@ -13,15 +13,16 @@ public class RythmRandomImpl implements IRythm {
 	private List<IRythmListener> listenerList = new ArrayList<IRythmListener>();
 	private int heightScreen;
 	private int widthScreen;
+	private boolean stop;	//true when the runnable must be stopped
 
 	public RythmRandomImpl(int height, int width) {
 		this.heightScreen = height;
 		this.widthScreen = width;
+		this.stop = false;
 	}
 
 	@Override
 	public void produceDisk() {
-
 		Random rand = new Random();
 		Disk disk = new Disk(rand.nextInt(this.widthScreen), rand.nextInt(this.heightScreen), 500);
         notifyListeners(disk);
@@ -53,7 +54,7 @@ public class RythmRandomImpl implements IRythm {
 
 	@Override
 	public void run() {
-		while (true) {
+		while (!this.stop) {
 			produceDisk();
 			try {
 				Thread.sleep(200);
@@ -61,5 +62,10 @@ public class RythmRandomImpl implements IRythm {
 				e.printStackTrace();
 			}
 		}
+	}
+
+	@Override
+	public void onStop() {
+		this.stop = true;
 	}
 }
