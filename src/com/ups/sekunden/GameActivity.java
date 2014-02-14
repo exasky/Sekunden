@@ -56,9 +56,17 @@ public class GameActivity extends Activity implements IRythmListener{
      * user click on pause button
      */
     public void doPause(View view){
-        if (rythm.isPaused())
+        if (rythm.isPaused()) {
+        	try {
+				Thread.sleep(400);
+			} catch (InterruptedException e) {
+			}
             rythm.onResumed();
-        else
+            diskImage.resume();
+        }
+        else {
             rythm.onPaused();
+            diskImage.pause();
+        }
     }
 }

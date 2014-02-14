@@ -9,6 +9,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.os.Handler;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.widget.ImageView;
 import com.ups.sekunden.domain.Disk;
 
@@ -25,9 +26,11 @@ public class DiskImageView extends ImageView {
 	private Handler handler;
 	private Runnable runnable;
 	private List<GraphicalDisk> disks;
+	private boolean isPaused;
 	
 	public DiskImageView(Context context, AttributeSet attrs) {
 		super(context,attrs);
+		this.isPaused = false;
 		this.disks = new CopyOnWriteArrayList<GraphicalDisk>();
 		this.handler = new Handler();
 		this.runnable = new Runnable() {
@@ -42,33 +45,65 @@ public class DiskImageView extends ImageView {
 		this.disks.add(new GraphicalDisk(disk));
 	}
 	
+	public void pause() {
+		this.isPaused = true;
+	}
+	
+	public void resume() {
+		this.isPaused = false;
+	}
+	
+	public boolean isPaused() {
+		return this.isPaused;
+	}
+	
 	@Override
 	protected void onDraw(Canvas canvas) {
 		super.onDraw(canvas);
-		this.drawCircles(canvas);
 		
-		handler.postDelayed(runnable, TIME_REFRESH);
+		this.drawCircles(canvas);	
+		
+		if(!this.isPaused) {
+			this.actualizeDisks();	//Don't actualize if the game is in pause
+			handler.postDelayed(runnable, TIME_REFRESH);
+		}
+		
+		
+	}
+	
+	private void actualizeDisks() {
+		Iterator<GraphicalDisk> it = this.disks.iterator();
+		while(it.hasNext()) {
+			GraphicalDisk disk = it.next();
+			
+			int radius = disk.getCurrentRadius();
+			
+			int newRadius = radius - (TIME_REFRESH * disk.getInitialRadius() / disk.getMsTime());
+			Log.i("radius", newRadius+"");
+			if(newRadius < GraphicalDisk.RADIUS_MIN) {
+				newRadius = GraphicalDisk.RADIUS_MIN;
+			}
+			disk.setCurrentRadius(newRadius);
+			
+			//remove old disk (to not be display anymore)
+			if(radius <= GraphicalDisk.RADIUS_MIN) {
+				disks.remove(disk);
+			}
+		}
 	}
 	
 	private void drawCircles(Canvas canvas) {
 		Paint paint = new Paint();
 		int radius;
-		int newRadius;
 		Iterator<GraphicalDisk> it = this.disks.iterator();
 		while(it.hasNext()) {
-			GraphicalDisk disk = it.next();;
+			GraphicalDisk disk = it.next();
 			
 			//draw colored circle
 			paint.setStyle(Paint.Style.FILL);
 			paint.setColor(disk.getColor());
 			radius = disk.getCurrentRadius();
 			canvas.drawCircle(disk.getxCenter(), disk.getyCenter(), radius, paint);
-			newRadius = radius - (TIME_REFRESH * disk.getInitialRadius() / disk.getMsTime());
-			if(newRadius < GraphicalDisk.RADIUS_MIN) {
-				newRadius = GraphicalDisk.RADIUS_MIN;
-			}
-			disk.setCurrentRadius(newRadius);
-			
 			
 			//draw border
 			paint.setStyle(Paint.Style.STROKE);
