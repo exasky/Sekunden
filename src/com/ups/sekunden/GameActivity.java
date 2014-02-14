@@ -3,10 +3,7 @@ package com.ups.sekunden;
 import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Display;
-import android.view.MotionEvent;
-import android.view.View;
-
+import android.view.*;
 import com.ups.sekunden.domain.Disk;
 import com.ups.sekunden.graphic.DiskImageView;
 import com.ups.sekunden.rythm.IRythm;
@@ -29,10 +26,15 @@ public class GameActivity extends Activity implements IRythmListener {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+        //full screen
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
 		setContentView(R.layout.game_layout);
 		Display defaultDisplay = getWindowManager().getDefaultDisplay();
 
-		diskImage = (DiskImageView) findViewById(R.id.viewDisk);
+        diskImage = (DiskImageView) findViewById(R.id.viewDisk);
 		rythm = new RythmRandomImpl(defaultDisplay.getHeight(),
 				defaultDisplay.getWidth());
 		rythm.registerListener(this);
