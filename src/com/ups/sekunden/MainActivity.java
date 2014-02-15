@@ -17,6 +17,22 @@ public class MainActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+
+        /**
+         * test Network score service
+        try{
+            List<Score> lst = NetworkScoreService.get_scores("-score");
+            Log.d("Network_score", lst.toString());
+            lst = NetworkScoreService.get_scores("score");
+            Log.d("Network_score",lst.toString());
+            Score tmp = lst.get(0);
+            tmp.author="kamehameha";
+            Log.d("Network_score", String.valueOf(NetworkScoreService.add_score(tmp)));
+            lst = NetworkScoreService.get_scores();
+            Log.d("Network_score", lst.toString());
+        }catch (Exception e){
+            Log.e("Network_score",e.getStackTrace().toString());
+        }*/
 	}
 
 	@Override
@@ -45,8 +61,7 @@ public class MainActivity extends Activity {
         Intent intent = new Intent(this, GameActivity.class);
         Log.i(classTag, "start game");
         startActivity(intent);
-    }
-
+    } 
     /**
      * action when click on credit button
      * @param view
