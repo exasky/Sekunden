@@ -3,10 +3,6 @@
  */
 package com.ups.sekunden.graphic;
 
-import java.util.Iterator;
-import java.util.List;
-import java.util.concurrent.CopyOnWriteArrayList;
-
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -15,12 +11,15 @@ import android.os.Handler;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.widget.ImageView;
-
 import com.ups.sekunden.R;
 import com.ups.sekunden.domain.Disk;
 import com.ups.sekunden.game.CounterImpl;
 import com.ups.sekunden.game.ICounter;
 import com.ups.sekunden.touch.ITouchReceiver;
+
+import java.util.Iterator;
+import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
  * @author SERIN Kevin
@@ -69,6 +68,7 @@ public class DiskImageView extends ImageView implements ITouchReceiver {
 	@Override
 	protected void onDraw(Canvas canvas) {
 		super.onDraw(canvas);
+        this.drawScore(canvas);
 
 		this.drawCircles(canvas);
 
@@ -101,6 +101,14 @@ public class DiskImageView extends ImageView implements ITouchReceiver {
 			}
 		}
 	}
+
+    private void drawScore(Canvas canvas) {
+        Paint paint = new Paint();
+        paint.setColor(Color.CYAN);
+        paint.setTextSize(36);
+
+        canvas.drawText(this.score.getScore() + "", 80, 360, paint);
+    }
 
 	private void drawCircles(Canvas canvas) {
 		Paint paint = new Paint();
