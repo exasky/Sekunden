@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 
+
 public class MainActivity extends Activity {
 
     public String classTag = "MainActivity";
@@ -50,18 +51,26 @@ public class MainActivity extends Activity {
     public void selfDestruct(View view){
         Log.i(classTag, "exit app");
         finish();
-    }
-
-    /**
+    }/**
+     * method call when show score is pressed.
+     * To launch the game
+     * @param view
+     */
+    public void openScore(View view){
+        Intent intent = new Intent(this, ScoreActivity.class);
+        Log.i(classTag, "show Scores");
+        startActivity(intent);
+    }/**
      * method call when start game is pressed.
      * To launch the game
      * @param view
      */
+
     public void startGame(View view){
         Intent intent = new Intent(this, GameActivity.class);
         Log.i(classTag, "start game");
         startActivity(intent);
-    } 
+    }
     /**
      * action when click on credit button
      * @param view

@@ -1,6 +1,7 @@
 package com.ups.sekunden.game;
 
 import android.util.Log;
+import com.ups.sekunden.domain.Score;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -70,7 +71,8 @@ public class NetworkScoreService {
      * @param order possible value :{author, score, date}
      * @return all score
      */
-    public static List<Score> get_scores(String order) throws Exception {
+    public static List<Score> get_scores(String order)  {
+        List<Score> ret_arr = null;
         try {
             URL url = null;
             String str = null;
@@ -86,7 +88,7 @@ public class NetworkScoreService {
 
             //parse json
             JSONArray json = null;
-            List<Score> ret_arr = new ArrayList();
+            ret_arr = new ArrayList();
             json = new JSONArray(str);
             for (int i=0; i < json.length(); i++){
                 JSONObject jsonScore = json.getJSONObject(i);
@@ -100,14 +102,15 @@ public class NetworkScoreService {
             }
             return ret_arr;
         } catch (Exception e) {
-            throw e;
+            e.printStackTrace();
+            return ret_arr;
         }
     }
 
     /**
      * @return all score
      */
-    public static List<Score> get_scores() throws Exception{
+    public static List<Score> get_scores() {
         return get_scores(null);
     }
 

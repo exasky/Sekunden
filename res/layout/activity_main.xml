@@ -28,7 +28,7 @@
             android:text="show scores"
             android:id="@+id/buttonShowScores" android:layout_below="@+id/buttonStartGame" android:layout_centerHorizontal="true"
             android:layout_marginTop="49dp" android:layout_alignParentLeft="true"
-            android:layout_alignParentRight="true" android:height="50dp"/>
+            android:layout_alignParentRight="true" android:height="50dp" android:onClick="openScore"/>
     <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

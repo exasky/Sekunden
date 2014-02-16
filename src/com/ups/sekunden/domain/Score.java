@@ -1,11 +1,11 @@
-package com.ups.sekunden.game;
+package com.ups.sekunden.domain;
 
 import java.util.Date;
 
 /**
  * Created by julien on 15/02/14.
  */
-public class Score {
+public class Score{
     public int score;
     public String author;
     public Date date ;
@@ -16,4 +16,7 @@ public class Score {
         date = pdate ;
     }
 
+    public String toString(){
+        return author+" : "+ score;
+    }
 }
