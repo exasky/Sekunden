@@ -1,0 +1,41 @@
+readme for score server of sekunden:
+    requirement:
+        -python
+        -django (python web framework, comparable to rails)
+
+    it use a sqlite db. the file is sqlite.db
+
+to lauch server : 
+    python manage.py runserver 0.0.0.0:8000
+        bind on 0.0.0.0 to make accessible by all IP 
+        
+see the url.py to see url redirection
+
+###########################################################       
+docstring : 
+    get_all:
+        """
+            return all score as json param
+            [order] : possible value :{author, score, date}
+                to order by desc, just write '-score' instead of 'score'
+        """
+        example : 
+           -localhost:8000/ws-score/get_all 
+           -localhost:8000/ws-score/get_all?order=date
+           -localhost:8000/ws-score/get_all?order=-date 
+
+    ------------------------------
+    
+    add_score:
+        """
+            adding a score in DB: with get params :
+            author : name of author (max-lenght = 10 )
+            score : integer value
+            date is automatically create with the current datetime
+            
+            return id of the inserted tuple
+        """
+        example :
+           -localhost:8000/ws-score/add_score?author=jeremie&score=-5
+           -localhost:8000/ws-score/add_score?author=kevin&score=65
+           -localhost:8000/ws-score/add_score?author=julien&score=258452

@@ -1,5 +1,5 @@
 .idea/
-Sekunden.iml
+*.iml
 .classpath
 .project
 *.prefs
