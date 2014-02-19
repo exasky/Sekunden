@@ -49,6 +49,9 @@ public class DiskImageView extends ImageView implements ITouchReceiver {
 		};
 	}
 
+    public ICounter getScore(){return this.score;}
+
+
 	public void addDisk(Disk disk) {
 		Log.d("VIEWSIZE", "x: " + this.getHeight() + " y: " + this.getWidth());
 		this.disks.add(new GraphicalDisk(disk));

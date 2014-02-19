@@ -20,12 +20,12 @@ import java.util.List;
  * Created by julien on 15/02/14.
  */
 public class NetworkScoreService {
-    private static final String SERVEUR_ADRESS = "http://192.168.1.10"; //because i have bad routes in my livebox
-    private static final int SERVEUR_PORT = 8000;
-    private static final String SUFFIX_URL = "/ws-score/";
-    /*private static final String SERVEUR_ADRESS = "http://jouradain.no-ip.org";
+   /* private static final String SERVEUR_ADRESS = "http://192.168.1.10"; //because i have bad routes in my livebox
+    private static final int SERVEUR_PORT = 8000;*/
+    private static final String SERVEUR_ADRESS = "http://jouradain.no-ip.org";
     private static final int SERVEUR_PORT = 14800;
-    private static final String SUFFIX_URL = "/ws-score/";*/
+
+    private static final String SUFFIX_URL = "/ws-score/";
 
 
     private static final String ADD_METHOD = "add_score";

@@ -8,3 +8,4 @@ bin/*
 libs/*
 gen/*
 out/*
+*.pyc

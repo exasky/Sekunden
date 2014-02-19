@@ -1,6 +1,7 @@
 package com.ups.sekunden;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.media.MediaPlayer;
 import android.os.Bundle;
@@ -12,6 +13,7 @@ import android.view.Window;
 import android.view.WindowManager;
 
 import com.ups.sekunden.domain.Disk;
+import com.ups.sekunden.game.ICounter;
 import com.ups.sekunden.graphic.DiskImageView;
 import com.ups.sekunden.rythm.IRythm;
 import com.ups.sekunden.rythm.IRythmListener;
@@ -30,6 +32,8 @@ public class GameActivity extends Activity implements IRythmListener {
 	private Integer xShift = null;
 	private Integer yShift = null;
 	private MediaPlayer backgroundMusic;
+
+	GameActivity curInstance;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -59,6 +63,17 @@ public class GameActivity extends Activity implements IRythmListener {
 
 		rythmTh = new Thread(rythm);
 		rythmTh.start();
+
+		// set timeout (3 minute ago the music)
+		curInstance = this;
+		android.os.Handler timeOutHandler = new android.os.Handler();
+		Runnable timeout = new Runnable() {
+			@Override
+			public void run() {
+				curInstance.onDestroy();
+			}
+		};
+		timeOutHandler.postDelayed(timeout, 3 * 60 * 1000);
 	}
 
 	@Override
@@ -66,6 +81,12 @@ public class GameActivity extends Activity implements IRythmListener {
 		super.onDestroy();
 		rythm.onStop();
 		backgroundMusic.stop();
+
+		Intent data = new Intent();
+		ICounter score = diskImage.getScore();
+		data.putExtra("score", score.getScore());
+		setResult(0, data);
+		// finish();
 	}
 
 	@Override
