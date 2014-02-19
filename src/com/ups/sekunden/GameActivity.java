@@ -64,6 +64,7 @@ public class GameActivity extends Activity implements IRythmListener {
                 curInstance.onDestroy();
             }
         };
+        timeOutHandler.postDelayed(timeout,3*60*1000);
 	}
 
 	@Override
