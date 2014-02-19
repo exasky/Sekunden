@@ -73,7 +73,7 @@ public class GameActivity extends Activity implements IRythmListener {
 				curInstance.onDestroy();
 			}
 		};
-		timeOutHandler.postDelayed(timeout, 3 * 60 * 1000);
+		timeOutHandler.postDelayed(timeout, 20 * 1000);
 	}
 
 	@Override
@@ -82,11 +82,12 @@ public class GameActivity extends Activity implements IRythmListener {
 		rythm.onStop();
 		backgroundMusic.stop();
 
-		Intent data = new Intent();
+		Intent data = getIntent();
 		ICounter score = diskImage.getScore();
 		data.putExtra("score", score.getScore());
-		setResult(0, data);
-		// finish();
+		this.setResult(Activity.RESULT_OK, data);
+
+		finish();
 	}
 
 	@Override

@@ -49,8 +49,9 @@ public class DiskImageView extends ImageView implements ITouchReceiver {
 		};
 	}
 
-    public ICounter getScore(){return this.score;}
-
+	public ICounter getScore() {
+		return this.score;
+	}
 
 	public void addDisk(Disk disk) {
 		Log.d("VIEWSIZE", "x: " + this.getHeight() + " y: " + this.getWidth());
@@ -171,12 +172,6 @@ public class DiskImageView extends ImageView implements ITouchReceiver {
 			if (isTouchCorrect(x, y, disk)) {
 				Log.e("Disk Touched", "Yaaaaaaaaaaaaaa");
 				this.score.addPoint(disk);
-				Canvas canvas = new Canvas();
-				Paint p = new Paint();
-				p.setColor(Color.BLUE);
-				p.setTextSize(20);
-				canvas.drawText("zefzfzef", 100, 100, p);
-				this.draw(canvas);
 				this.disks.remove(disk);
 			} else {
 				Log.e("Disk NOT Touched", "BOUOUOUOUOUOUU");
