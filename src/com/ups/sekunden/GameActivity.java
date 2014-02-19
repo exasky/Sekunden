@@ -73,7 +73,7 @@ public class GameActivity extends Activity implements IRythmListener {
 				curInstance.onDestroy();
 			}
 		};
-		timeOutHandler.postDelayed(timeout, 20 * 1000);
+		timeOutHandler.postDelayed(timeout, 20 * 1000); // 3 * 60 * 1000 // 3 minutes
 	}
 
 	@Override
@@ -84,7 +84,7 @@ public class GameActivity extends Activity implements IRythmListener {
 
 		Intent data = getIntent();
 		ICounter score = diskImage.getScore();
-		data.putExtra("score", score.getScore());
+		data = data.putExtra("score", score.getScore());
 		this.setResult(Activity.RESULT_OK, data);
 
 		finish();
@@ -117,10 +117,8 @@ public class GameActivity extends Activity implements IRythmListener {
 		if (rythm.isPaused()) {
 			try {
 				// ---gradient sound resume
-				backgroundMusic.setVolume(0.333f, 0.333f); // setVolume (left,
-															// rigt) float
-															// values between 0
-															// and 1
+				backgroundMusic.setVolume(0.333f, 0.333f); // setVolume (left, rigt) float
+															// values between 0  and 1
 				backgroundMusic.start();
 				Thread.sleep(400);
 
@@ -128,7 +126,7 @@ public class GameActivity extends Activity implements IRythmListener {
 				Thread.sleep(400);
 
 				backgroundMusic.setVolume(1.0f, 1.0f);
-				// ---END OF gradient sound reume
+				// ---END OF gradient sound resume
 				rythm.onResumed();
 				diskImage.resume();
 
