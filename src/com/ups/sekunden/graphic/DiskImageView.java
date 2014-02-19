@@ -3,6 +3,10 @@
  */
 package com.ups.sekunden.graphic;
 
+import java.util.Iterator;
+import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
+
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -11,15 +15,12 @@ import android.os.Handler;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.widget.ImageView;
+
 import com.ups.sekunden.R;
 import com.ups.sekunden.domain.Disk;
 import com.ups.sekunden.game.CounterImpl;
 import com.ups.sekunden.game.ICounter;
 import com.ups.sekunden.touch.ITouchReceiver;
-
-import java.util.Iterator;
-import java.util.List;
-import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
  * @author SERIN Kevin
@@ -68,7 +69,7 @@ public class DiskImageView extends ImageView implements ITouchReceiver {
 	@Override
 	protected void onDraw(Canvas canvas) {
 		super.onDraw(canvas);
-        this.drawScore(canvas);
+		this.drawScore(canvas);
 
 		this.drawCircles(canvas);
 
@@ -102,13 +103,27 @@ public class DiskImageView extends ImageView implements ITouchReceiver {
 		}
 	}
 
-    private void drawScore(Canvas canvas) {
-        Paint paint = new Paint();
-        paint.setColor(Color.CYAN);
-        paint.setTextSize(36);
+	private void drawScore(Canvas canvas) {
+		Paint paint = new Paint();
+		paint.setColor(Color.CYAN);
+		paint.setTextSize(36);
+		int widthMargin = 0;
 
-        canvas.drawText(this.score.getScore() + "", 80, 360, paint);
-    }
+		if (this.score.getScore() < 100) {
+			widthMargin = 50;
+		} else if (this.score.getScore() < 1000) {
+			widthMargin = 70;
+		} else if (this.score.getScore() < 10000) {
+			widthMargin = 90;
+		} else if (this.score.getScore() < 100000) {
+			widthMargin = 100;
+		} else if (this.score.getScore() < 1000000) {
+			widthMargin = 130;
+		}
+
+		canvas.drawText(this.score.getScore() + "", canvas.getWidth()
+				- widthMargin, 50, paint);
+	}
 
 	private void drawCircles(Canvas canvas) {
 		Paint paint = new Paint();
@@ -153,7 +168,13 @@ public class DiskImageView extends ImageView implements ITouchReceiver {
 			if (isTouchCorrect(x, y, disk)) {
 				Log.e("Disk Touched", "Yaaaaaaaaaaaaaa");
 				this.score.addPoint(disk);
-				disks.remove(disk);
+				Canvas canvas = new Canvas();
+				Paint p = new Paint();
+				p.setColor(Color.BLUE);
+				p.setTextSize(20);
+				canvas.drawText("zefzfzef", 100, 100, p);
+				this.draw(canvas);
+				this.disks.remove(disk);
 			} else {
 				Log.e("Disk NOT Touched", "BOUOUOUOUOUOUU");
 			}

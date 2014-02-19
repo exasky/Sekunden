@@ -7,7 +7,7 @@ import com.ups.sekunden.graphic.GraphicalDisk;
 public class CounterImpl implements ICounter {
 
 	private int playerPoints;
-	private static final int COEFF = 100;
+	private static final int COEFF = 1000;
 
 	public CounterImpl() {
 		this.playerPoints = 0;

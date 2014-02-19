@@ -19,7 +19,7 @@
     <ListView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@id/scoreListView"
+            android:id="@+id/scoreListView"
             android:layout_alignParentRight="true" android:choiceMode="none"
             android:visibility="visible" android:layout_below="@+id/imageViewLogo"/>
 </RelativeLayout>
